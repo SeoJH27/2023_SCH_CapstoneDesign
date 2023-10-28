@@ -7,21 +7,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_logo"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:gravity="left|center"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:background="@android:color/holo_blue_dark"
-        android:textSize="25sp"
-        app:contentInsetStart="0dp"
-        android:text="개인 정보 수정" />
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <android.widget.TextView
+            android:id="@+id/appName"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:text="KSJ"
+            android:textSize="45dp" />
+
+        <android.widget.ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/home"
+            android:contentDescription="btnhome"/>
+    </LinearLayout>
 
     <EditText
         android:id="@+id/name"
@@ -49,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="성별"
-        android:textSize="25sp"
+        android:textSize="25dp"
         tools:ignore="HardcodedText" />
 
     <RadioGroup
@@ -65,6 +69,7 @@
             android:layout_weight="1"
             android:minHeight="48dp"
             android:text="여성"
+            android:textSize="25dp"
             tools:ignore="HardcodedText,VisualLintButtonSize" />
 
         <RadioButton
@@ -74,6 +79,7 @@
             android:layout_weight="1"
             android:minHeight="48dp"
             android:text="남성"
+            android:textSize="25dp"
             tools:ignore="HardcodedText,VisualLintButtonSize" />
     </RadioGroup>
 
@@ -87,78 +93,13 @@
         android:minHeight="60dp"
         tools:ignore="HardcodedText,TextFields,VisualLintTextFieldSize" />
 
-    <TextView
-        android:id="@+id/textview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="신경쓰고싶은 신체부위" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <CheckBox
-            android:id="@+id/checkBox2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="머리" />
-
-        <CheckBox
-            android:id="@+id/checkBox6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="눈" />
-
-        <CheckBox
-            android:id="@+id/checkBox3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="장" />
-
-        <CheckBox
-            android:id="@+id/checkBox4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="피부" />
-
-        <CheckBox
-            android:id="@+id/checkBox5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="혈관" />
-    </LinearLayout>
-
     <Button
         android:id="@+id/btnsave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="저장"
-        android:textSize="20sp"
+        android:textSize="25dp"
         android:textStyle="bold"
         tools:ignore="HardcodedText,VisualLintButtonSize" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:id="@+id/btnhome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="홈"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="HardcodedText,VisualLintButtonSize" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <android.widget.TextView
+            android:id="@+id/appName"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:text="KSJ"
+            android:textSize="45dp" />
+
+        <android.widget.ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/home"
+            android:contentDescription="btnhome"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="이름"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:minHeight="60dp"
+        tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+
+    <EditText
+        android:id="@+id/age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="나이"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:minHeight="60dp"
+        tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+
+
+    <TextView
+        android:id="@+id/gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="성별"
+        android:textSize="25dp"
+        tools:ignore="HardcodedText" />
+
+    <RadioGroup
+        android:id="@id/gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/gender_female"
+            android:layout_width="106dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:text="여성"
+            android:textSize="25dp"
+            tools:ignore="HardcodedText,VisualLintButtonSize" />
+
+        <RadioButton
+            android:id="@+id/gender_male"
+            android:layout_width="106dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:text="남성"
+            android:textSize="25dp"
+            tools:ignore="HardcodedText,VisualLintButtonSize" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/weight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="몸무게"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:minHeight="60dp"
+        tools:ignore="HardcodedText,TextFields,VisualLintTextFieldSize" />
+
+    <Button
+        android:id="@+id/btnsave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="저장"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,VisualLintButtonSize" />
+
+</LinearLayout>

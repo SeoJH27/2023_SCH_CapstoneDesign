@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-
+        android:layout_weight="2"
         android:orientation="horizontal">
 
         <TextView
@@ -19,7 +19,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="KSJ"
-            android:gravity="left|center"
             android:textSize="45dp" />
 
         <TextView
@@ -35,7 +34,12 @@
         android:layout_width="match_parent"
         android:layout_height="295dp"
         android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_weight="4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <android.widget.Button
                 android:id="@+id/nuturient"
@@ -57,36 +61,43 @@
                 android:textColor="@color/white"
                 android:textSize="40dp"/>
 
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="5">
+        android:layout_weight="4"
+        android:orientation="horizontal">
 
-        <android.widget.Button
-            android:id="@+id/personalInfo"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="40dp"
-            android:textColor="@color/black"
-            android:drawableTop="@drawable/personal_resize"
-            android:text="개인정보"
-            />
+            android:orientation="horizontal">
 
-        <android.widget.Button
-            android:id="@+id/setting"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="40dp"
-            android:textColor="@color/black"
-            android:drawableTop="@drawable/setting_resize"
-            android:text="설정"
-            />
+            <android.widget.Button
+                android:id="@+id/personalInfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="40dp"
+                android:textColor="@color/black"
+                android:drawableTop="@drawable/personal_resize"
+                android:text="개인정보"
+                />
 
+            <android.widget.Button
+                android:id="@+id/setting"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="40dp"
+                android:textColor="@color/black"
+                android:drawableTop="@drawable/setting_resize"
+                android:text="설정"
+                />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

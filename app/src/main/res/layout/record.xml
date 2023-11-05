@@ -28,15 +28,16 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="500dp"
         android:contentDescription="scroll">
+
     </ScrollView>
 
     <Button
         android:id="@+id/camera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableTop="@drawable/camera_resize"
         android:background="@color/white"
         android:text="사진찍기"
         android:textStyle="bold"

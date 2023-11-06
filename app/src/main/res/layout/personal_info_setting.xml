@@ -10,20 +10,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="6">
 
-        <android.widget.TextView
+
+    <android.widget.TextView
             android:id="@+id/appName"
-            android:layout_width="340dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="KSJ"
-            android:textSize="45dp" />
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
         <android.widget.ImageButton
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/home"
+            android:layout_weight="5"
             android:contentDescription="btnhome"/>
     </LinearLayout>
 
@@ -57,7 +64,6 @@
         tools:ignore="HardcodedText" />
 
     <RadioGroup
-        android:id="@id/gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -70,7 +76,7 @@
             android:minHeight="48dp"
             android:text="여성"
             android:textSize="25dp"
-            tools:ignore="HardcodedText,VisualLintButtonSize" />
+            tools:ignore="HardcodedText,VisualLintButtonSize"/>
 
         <RadioButton
             android:id="@+id/gender_male"
@@ -80,7 +86,7 @@
             android:minHeight="48dp"
             android:text="남성"
             android:textSize="25dp"
-            tools:ignore="HardcodedText,VisualLintButtonSize" />
+            tools:ignore="HardcodedText,VisualLintButtonSize"/>
     </RadioGroup>
 
     <EditText

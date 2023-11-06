@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -15,11 +13,14 @@
 
         <TextView
             android:id="@+id/appName"
-            android:layout_width="90dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="KSJ"
-            android:textSize="45dp" />
+            android:layout_marginLeft="10dp"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/textview"
@@ -27,7 +28,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="right|bottom"
-            android:text="000님 환영합니다" />
+            android:text="사용자님 환영합니다" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,7 +50,7 @@
                 android:background="@drawable/nuturient"
                 android:text="영양\n분석"
                 android:textColor="@color/white"
-                android:textSize="40dp"/>
+                android:textSize="40dp" />
 
             <android.widget.Button
                 android:id="@+id/note"

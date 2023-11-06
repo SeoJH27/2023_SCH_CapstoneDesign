@@ -9,20 +9,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="6">
 
         <android.widget.TextView
             android:id="@+id/appName"
-            android:layout_width="340dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="KSJ"
-            android:textSize="45dp" />
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
 
         <android.widget.ImageButton
             android:id="@+id/home"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/home"
+            android:layout_weight="5"
             android:contentDescription="btnhome"/>
     </LinearLayout>
 
@@ -82,7 +88,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gender" />
 
-            <TextView
+            <Button
                 android:id="@+id/btnsetting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -90,7 +96,8 @@
                 android:layout_marginBottom="16dp"
                 android:text="개인정보설정>"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                android:backgroundTint="@color/white"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

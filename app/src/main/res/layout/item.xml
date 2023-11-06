@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:scrollbarThumbHorizontal="@android:drawable/alert_light_frame"
+    android:scrollbarThumbVertical="@android:drawable/alert_light_frame">
+
+    <Button
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/white"
+        android:scrollbarThumbHorizontal="@android:drawable/alert_light_frame" />
+
+</LinearLayout>

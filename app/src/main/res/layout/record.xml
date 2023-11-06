@@ -4,44 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="10">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/l1"
+        android:weightSum="6">
 
         <android.widget.TextView
             android:id="@+id/appName"
-            android:layout_width="340dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="KSJ"
-            android:textSize="45dp" />
+            android:layout_marginLeft="10dp"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_weight="1"/>
 
         <android.widget.ImageButton
             android:id="@+id/home"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/home"
-            android:contentDescription="btnhome"/>
+            android:contentDescription="btnhome"
+            android:layout_weight="5"/>
     </LinearLayout>
 
-    <ScrollView
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:contentDescription="scroll">
-
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:id="@+id/image"
+        android:layout_weight="10"/>
 
     <Button
         android:id="@+id/camera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableTop="@drawable/camera_resize"
         android:background="@color/white"
+        android:textSize="30dp"
         android:text="사진찍기"
         android:textStyle="bold"
-        android:textColor="@color/black" />
-
+        android:textColor="@color/black"/>
 
 </LinearLayout>

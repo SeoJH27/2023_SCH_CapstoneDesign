@@ -16,6 +16,7 @@ public class OCRActivity extends MainActivity{
     TextView text, con_text, result;
     Button Resultbutton;
     StringBuilder translateText;
+    String db_text = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,13 +40,15 @@ public class OCRActivity extends MainActivity{
         Resultbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DBProc DBProc = new DBProc(OCRActivity.this);
                 //데이터베이스에 저장
+                DBProc.insertPic(db_text);
+                //홈 화면 전환
                 startActivity(new Intent(OCRActivity.this, MainActivity.class));
             }
         });
 
     }
-
 
     public class ThreadClass extends AsyncTask<String, String, String> {
 
@@ -140,7 +143,6 @@ public class OCRActivity extends MainActivity{
 
                 //해당 영양분이 존재하지 않으면 넘어감
             }
-
             AnalyzeResult(nut, nut_int, nut_measure);
         }
         else
@@ -156,13 +158,16 @@ public class OCRActivity extends MainActivity{
         try {
             for (int i = 0; i < nut.length; i++) {
                 c += nut[i] + ": \n";
-                if (nut_messure[i] == null)
+                db_text += nut[i] + ": ";
+                if (nut_messure[i] == null){
                     t += nut_int[i] + "\n";
-                else
+                    db_text += nut_int[i]+ "\n";
+                }
+                else{
                     t += nut_int[i] + nut_messure[i] + "\n";
-
+                    db_text += nut_int[i] + nut_messure[i] + "\n";
+                }
             }
-
             con_text.setText(c);
             text.setText(t);
         } catch (Exception e){
@@ -174,85 +179,86 @@ public class OCRActivity extends MainActivity{
                 switch (nut[i]) {
                     case "당류":
                         if (nut_int[i] >= 100)
-                            r += "당류의 하루 권장량은 100g으로\n권장량 초과시 질병으로는, 충치, 비만, 심장병, 고혈압, 제2형 당뇨병 등의 발생 위험이 있습니다.\n";
+                            r += "당류의 하루 권장량은 100g으로\n권장량 초과시 질병으로는, 충치, 비만, 심장병, 고혈압, 제2형 당뇨병 등의 발생 위험이 있습니다.\n\n";
                         else if (nut_int[i] > 0)
-                            r += "당류의 하루 권장량은 100g이므로 안전합니다!\n";
+                            r += "당류의 하루 권장량은 100g이므로 안전합니다!\n\n";
                         break;
                     case "단백질":
                         if (nut_int[i] >= 55)
-                            r += "단백질의 하루 권장량은 사람의 체중마다 다르지만 평균적인 권장량은 55g으로\n 권장량 초과시 통풍,콩팥 질환(신장),변비등이 발생 위험이 있습니다.\n";
+                            r += "단백질의 하루 권장량은 사람의 체중마다 다르지만 평균적인 권장량은 55g으로\n 권장량 초과시 통풍,콩팥 질환(신장),변비등이 발생 위험이 있습니다.\n\n";
                         else if (nut_int[i] > 0)
-                            r += "단백질의 하루 권장량은 55g이므로 안전합니다!\n";
+                            r += "단백질의 하루 권장량은 55g이므로 안전합니다!\n\n";
                         break;
                     case "지방":
                         if ((nut_int[i] >= 53 && info.getInstance().getGender() == true) || (nut_int[i] >= 52 && info.getInstance().getGender() == false))
-                            r += "지방의 하루 권장량은 성인 남성 기준 53g, 성인 여성 기준 42g정도이며, 권장량 초과시 각종 성인병과 대장암 발병률이 올라갑니다.\n";
+                            r += "지방의 하루 권장량은 성인 남성 기준 53g, 성인 여성 기준 42g정도이며, 권장량 초과시 각종 성인병과 대장암 발병률이 올라갑니다.\n\n";
                         else if (nut_int[i] > 0)
-                            r += "지방의 하루 권장량은 성인 남성 기준 53g, 성인 여성 기준 42g정도이므로 안전합니다!\n";
+                            r += "지방의 하루 권장량은 성인 남성 기준 53g, 성인 여성 기준 42g정도이므로 안전합니다!\n\n";
                         break;
                     case "트랜스지방":
                         if (nut_int[i] >= 2)
-                            r += "트랜스지방의 1일 섭취량의 열량의 1%이하로 제한하고 있으며, 이에 따라 하루에 2g 이하 입니다.\n과다 복용시 혈중 콜레스테롤 수치를 높이고 동맥 경화,심장 질환, 고혈압 발생 위험이 있습니다.\n";
+                            r += "트랜스지방의 1일 섭취량의 열량의 1%이하로 제한하고 있으며, 이에 따라 하루에 2g 이하 입니다.\n과다 복용시 혈중 콜레스테롤 수치를 높이고 동맥 경화,심장 질환, 고혈압 발생 위험이 있습니다.\n\n";
                         else if (nut_int[i] > 0)
-                            r += "트랜스지방의 1일 섭취량의 열량의 1%이하로 제한하고 있으며, 이에 따라 하루에 2g 이하이므로 안전합니다!\n";
+                            r += "트랜스지방의 1일 섭취량의 열량의 1%이하로 제한하고 있으며, 이에 따라 하루에 2g 이하이므로 안전합니다!\n\n";
                         break;
                     case "포화지방":
                         if ((nut_int[i] >= 30 && info.getInstance().getGender() == true) || (nut_int[i] >= 25 && info.getInstance().getGender() == false))
-                            r += "포화지방의 일일 권장량은 평균적으로 성인 남성의 경우 대략 20~30g, 성인 여성은 15~25g 정도가 권장됩니다.\n과다 복용을 하면 심장질환, 고혈압, 비만, 당뇨병 등의 위험이 상승합니다.\n";
+                            r += "포화지방의 일일 권장량은 평균적으로 성인 남성의 경우 대략 20~30g, 성인 여성은 15~25g 정도가 권장됩니다.\n과다 복용을 하면 심장질환, 고혈압, 비만, 당뇨병 등의 위험이 상승합니다.\n\n";
                         else if (nut_int[i] > 0)
-                            r += "포화지방의 일일 권장량은 평균적으로 성인 남성의 경우 대략 20~30g, 성인 여성은 15~25g 정도가 권장되므로 안전합니다!\n";
+                            r += "포화지방의 일일 권장량은 평균적으로 성인 남성의 경우 대략 20~30g, 성인 여성은 15~25g 정도가 권장되므로 안전합니다!\n\n";
                         break;
                     case "콜레스테롤":
                         if (nut_int[i] >= 300)
-                            r += "콜레스테롤의 하루 권장량은 300mg로,\n 권장량 초과시 혈관 막힘 증상과, 고혈압을 유발할 수 있습니다.\n";
+                            r += "콜레스테롤의 하루 권장량은 300mg로,\n 권장량 초과시 혈관 막힘 증상과, 고혈압을 유발할 수 있습니다.\n\n";
                         else if (nut_int[i] > 0)
-                            r += "콜레스테롤의 하루 권장량은 300mg으로 안전합니다!\n";
+                            r += "콜레스테롤의 하루 권장량은 300mg으로 안전합니다!\n\n";
                         break;
                     case "나트륨":
                         if (nut_int[i] >= 2000)
-                            r += "나트륨의 하루 권장량은 2000mg 정도로,\n권장량 초과시 부종, 두통, 관절염, 골다공증, 위염 등의 부작용이 생깁니다.\n";
+                            r += "나트륨의 하루 권장량은 2000mg 정도로,\n권장량 초과시 부종, 두통, 관절염, 골다공증, 위염 등의 부작용이 생깁니다.\n\n";
                         else if (nut_int[i] > 0)
-                            r += "나트륨의 하루 권장량은 2000mg 정도이므로 안전합니다!\n";
+                            r += "나트륨의 하루 권장량은 2000mg 정도이므로 안전합니다!\n\n";
                         break;
                     case "과당":
                         if (nut_int[i] >= 50)
-                            r += "과당의 하루 권장량은 평균적으로 50g으로 기준으로 합니다.\n과다 섭취시 피로를 쉽게 느끼며, 몸이 잘 붓고, 피부가 나빠지는 등 건강에 악 영향을 끼칠수 있습니다.\n";
+                            r += "과당의 하루 권장량은 평균적으로 50g으로 기준으로 합니다.\n과다 섭취시 피로를 쉽게 느끼며, 몸이 잘 붓고, 피부가 나빠지는 등 건강에 악 영향을 끼칠수 있습니다.\n\n";
                         else if (nut_int[i] > 0)
-                            r += "과당의 하루 권장량은 평균적으로 50g으로 기준이으로 안전합니다!\n";
+                            r += "과당의 하루 권장량은 평균적으로 50g으로 기준이으로 안전합니다!\n\n";
                         break;
                     case "비타민A":
                         if (nut_int[i] >= 800)
-                            r += "비타민A의 1일 권장 섭취량은 약 700 - 800㎍ 정도로,\n권장량 초과시 두통, 피부 건조 및 가려움, 간장 비대 등이 나타 납니다.\n특히 임산기에 과다 섭취시 사산, 출생 기형 등이 발생할 수 있습니다.\n";
+                            r += "비타민A의 1일 권장 섭취량은 약 700 - 800㎍ 정도로,\n권장량 초과시 두통, 피부 건조 및 가려움, 간장 비대 등이 나타 납니다.\n특히 임산기에 과다 섭취시 사산, 출생 기형 등이 발생할 수 있습니다.\n\n";
                         else if (nut_int[i] > 0)
-                            r += "비타민A의 1일 권장 섭취량은 약 700 - 800㎍ 정도로 안전합니다!\n";
+                            r += "비타민A의 1일 권장 섭취량은 약 700 - 800㎍ 정도로 안전합니다!\n\n";
                         break;
                     case "비타민C":
                         if (nut_int[i] >= 100)
-                            r += "비타민C의 하루 권장량으로 성인은 100 mg이고 임산부와 흡연자는 130-140 mg 정도이며.\n하루 최대 상한 섭취량은 2000mg이다. 권장량 초과시 설사, 속쓰림, 복통, 신장 결석과 같은 증상이 발생할 수 있습니다.\n";
+                            r += "비타민C의 하루 권장량으로 성인은 100 mg이고 임산부와 흡연자는 130-140 mg 정도이며.\n하루 최대 상한 섭취량은 2000mg이다. 권장량 초과시 설사, 속쓰림, 복통, 신장 결석과 같은 증상이 발생할 수 있습니다.\n\n";
                         else if (nut_int[i] > 0)
-                            r += "비타민C의 하루 권장량으로 성인은 100 mg이고 임산부와 흡연자는 130-140 mg 정도이며.\n하루 최대 상한 섭취량은 2000mg이므로 안전합니다!\n";
+                            r += "비타민C의 하루 권장량으로 성인은 100 mg이고 임산부와 흡연자는 130-140 mg 정도이며.\n하루 최대 상한 섭취량은 2000mg이므로 안전합니다!\n\n";
                         break;
                     case "칼슘":
                         if (nut_int[i] >= 2500)
-                            r += "칼슘의 하루 권장량은 성인기준 2500mg입니다.\n권장량 초과시 혈중 칼슘 수치를 높일 수 있으며, 이것을 고칼슘 혈증이라 합니다. 신장 결석 및 신장 손상을 포함한 건강 문제를 일으킬 수 있습니다.\n";
+                            r += "칼슘의 하루 권장량은 성인기준 2500mg입니다.\n권장량 초과시 혈중 칼슘 수치를 높일 수 있으며, 이것을 고칼슘 혈증이라 합니다. 신장 결석 및 신장 손상을 포함한 건강 문제를 일으킬 수 있습니다.\n\n";
                         else if (nut_int[i] > 0)
-                            r += "칼슘의 하루 권장량은 성인기준 2500mg이므로 안전합니다!\n";
+                            r += "칼슘의 하루 권장량은 성인기준 2500mg이므로 안전합니다!\n\n";
                         break;
                     case "철분":
                         if ((nut_int[i] >= 10 && info.getInstance().getGender() == true) || (nut_int[i] >= 14 && info.getInstance().getGender() == false))
-                            r += "철분의 하루 권장량은 성인 남성의 기준 9~10mg이고, 성인 여성의 경우 8~14mg입니다.\n하루 권장량 초과시 배탈, 변비, 메스꺼움, 복통, 구토 및 설사가 발생할 수 있고, 심할 경우 위염 및 위궤양이 유발될 수 있습니다.\n극도로 많은 양을 섭취할 경우 여러 장기들이 제 기능을 하지 못하는 장기 부전, 혼수 상태, 경련 및 사망 할수도 있습니다.\n";
+                            r += "철분의 하루 권장량은 성인 남성의 기준 9~10mg이고, 성인 여성의 경우 8~14mg입니다.\n하루 권장량 초과시 배탈, 변비, 메스꺼움, 복통, 구토 및 설사가 발생할 수 있고, 심할 경우 위염 및 위궤양이 유발될 수 있습니다.\n\n극도로 많은 양을 섭취할 경우 여러 장기들이 제 기능을 하지 못하는 장기 부전, 혼수 상태, 경련 및 사망 할수도 있습니다.\n";
                         else if (nut_int[i] > 0)
-                            r += "철분의 하루 권장량은 성인 남성의 기준 9~10mg이고, 성인 여성의 경우 8~14mg이므로 안전합니다!\n";
+                            r += "철분의 하루 권장량은 성인 남성의 기준 9~10mg이고, 성인 여성의 경우 8~14mg이므로 안전합니다!\n\n";
                         break;
                     case "마그네슘":
                         if (nut_int[i] >= 420)
-                            r += "마그네슘의 하루 권장량은 320~420mg정도 입니다.\n하루 권장량 초과 시에는 신장 장애, 위장 장애, 소화 장애 등이 발생할 수 있다.\n";
+                            r += "마그네슘의 하루 권장량은 320~420mg정도 입니다.\n하루 권장량 초과 시에는 신장 장애, 위장 장애, 소화 장애 등이 발생할 수 있다.\n\n";
                         else if (nut_int[i] > 0)
-                            r += "마그네슘의 하루 권장량은 320~420mg정도이므로 안전합니다!\n";
+                            r += "마그네슘의 하루 권장량은 320~420mg정도이므로 안전합니다!\n\n";
                         break;
                 }
-                result.setText(r);
             }
+            db_text += "\n" + r;
+            result.setText(r);
         } catch (Exception e){
             Log.e("result Error", e.getMessage());
         }

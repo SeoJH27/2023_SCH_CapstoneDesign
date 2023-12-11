@@ -1,35 +1,23 @@
 package com.sch.ksj.nutritionalanalysisapp;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
-import android.widget.Toast;
-
 import java.util.Base64;
-
 
 public class OcrProc {
 
     static String ocrApiUrl = "https://wuruk0p342.apigw.ntruss.com/custom/v1/25116/1b481823b785af66fad5bb3187dcf8904363afa68fdcde0339e1089e1db637ee/general";
     static String ocrSecretKey = "bU9yZm5uUGx6V2dKcVRDTkttUlRlWFZiUWtXaEN0VXQ=";
-
-    private static String getURLForResource(int resId) {
-        return Uri.parse("android.resource://" + R.class.getPackage().getName() + "/" + resId).toString();
-    }
-
-    private static Context context;
 
     public static String main() {
         String ocrMessage = "";
@@ -43,7 +31,7 @@ public class OcrProc {
             con.setRequestProperty("Accept","application/json");
             con.setDoOutput(true);
 
-            String base64Img = imageToBase64("image");
+            String base64Img = imageToBase64();
 
             String jsonData = "{\n"+
                     "\"version\": \"V2\",\n"+
@@ -84,10 +72,10 @@ public class OcrProc {
         return ocrMessage;
     }
 
-    public static String imageToBase64(String imgName){
+    public static String imageToBase64(){
         String base64Img = "";
 
-        File f = new File("/data/user/0/com.sch.ksj.nutritionalanalysisapp/files", imgName+".jpg");
+        File f = new File("/data/user/0/com.sch.ksj.nutritionalanalysisapp/files", "image.jpg");
         Log.d("파일", f.toString());
 
         if (f.exists() && f.isFile() && f.length() > 0) {

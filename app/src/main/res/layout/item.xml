@@ -3,14 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:scrollbarThumbHorizontal="@android:drawable/alert_light_frame"
-    android:scrollbarThumbVertical="@android:drawable/alert_light_frame">
+    android:padding="5dp">
 
-    <Button
-        android:id="@+id/text"
+    <ImageView
+        android:id="@+id/list_pic"
+        android:layout_width="70dp"
+        android:layout_height="70dp" />
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:backgroundTint="@color/white"
-        android:scrollbarThumbHorizontal="@android:drawable/alert_light_frame" />
+        android:layout_height="wrap_content"
+        android:id="@+id/list_text"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/num"
+        android:enabled="false"
+        android:textSize="1dp"
+        />
 </LinearLayout>
